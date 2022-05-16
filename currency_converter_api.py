@@ -29,12 +29,18 @@ def print_currencies(currencies):
 def exchange_rate(currency1, currency2):
     endpoint = f"api/v7/convert?q={currency1}_{currency2}&compact=ultra&apiKey={API_KEY}"  # he doesn't explain the reasoning behind this.
     url = BASE_URL + endpoint
-    response = get(url)
+    data = get(url).json()
 
-    data = response.json()
+    if len(data) == 0:
+        print("Invalid currencies")
+        return
+    
+    return list(data.values())[0] # this is to grab the pair; the 0th item should be the exchnage rate.
+
     printer.pprint(data)
 
 # data = get_currencies()
 # print_currencies(data)
 
-exchange_rate("USD", "CAD")
+rate = exchange_rate("USD", "CAD")
+print(rate)
