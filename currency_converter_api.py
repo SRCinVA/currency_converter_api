@@ -35,12 +35,29 @@ def exchange_rate(currency1, currency2):
         print("Invalid currencies")
         return
     
-    return list(data.values())[0] # this is to grab the pair; the 0th item should be the exchnage rate.
+    rate = list(data.values())[0] # this is to grab the pair; the 0th item should be the exchange rate.
+    print(f"{currency1} -> {currency2} = {rate}")
 
-    printer.pprint(data)
+    return rate
+
+    # printer.pprint(data)
 
 # data = get_currencies()
 # print_currencies(data)
 
+def convert(currency1, currency2, amount):
+    rate = exchange_rate(currency1, currency2)
+    if rate is None:  # ... which would mean that we got an invalid currency
+        return
+
+    try:
+        amount = float(amount) # try to convert the amount into a float.
+    except:
+        print("Invalid amount") # if you got a string or other issue.
+        return
+
+    converted_amount = rate * amount
+
 rate = exchange_rate("USD", "CAD")
 print(rate)
+print
