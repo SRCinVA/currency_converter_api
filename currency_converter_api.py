@@ -57,7 +57,13 @@ def convert(currency1, currency2, amount):
         return
 
     converted_amount = rate * amount
+    print(f"{amount} {currency1} is equal to {converted_amount} {currency2}")
+    return converted_amount
 
-rate = exchange_rate("USD", "CAD")
-print(rate)
-print
+def main():
+    currencies = get_currencies()
+    print("Welcome to the currency converter.")
+
+# rate = exchange_rate("USD", "CAD")
+# print(rate)
+# convert("USD","CAD",2)
