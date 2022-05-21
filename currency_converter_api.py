@@ -69,18 +69,25 @@ def main():
     print()
 
     while True:
-        command = input("Enter a command (q to quit)").lower()
+        command = input("Enter a command (q to quit): ").lower()
 
         if command == "q":
             break
-        elif command == list:
+        elif command == "list":
             print_currencies(currencies)
-        elif command == "Convert":
+        elif command == "convert":
             currency1 = input("Enter a base currency id: ").upper()
             amount = input(f"Enter an amount in {currency1}: ")
             currency2 = input("Enter a currency id to convert to: ").upper()
-            convert()
+            convert(currency1, currency2, amount)
+        elif command == "rate":
+            currency1 = input("Enter a base currency id: ").upper()
+            currency2 = input("Enter a currency id to convert to: ").upper()
+            exchange_rate(currency1, currency2)
+        else:
+            print("Unrecognized command!")
 
+main()
 
 # rate = exchange_rate("USD", "CAD")
 # print(rate)
